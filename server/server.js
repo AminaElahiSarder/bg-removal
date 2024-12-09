@@ -1,15 +1,18 @@
 import express from 'express';
 import cors from 'cors';
-import connectDB from './configs/mongodb.js';  // Keep .js extension for ES Modules
 import dotenv from 'dotenv';
+import connectDB from './configs/mongodb.js'; // Adjust path if needed
 
 dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(express.json());
 app.use(cors());
+
+app.get('/', (req, res) => {
+  res.send("API Working");
+});
 
 // Connect to the database
 (async () => {
@@ -21,11 +24,8 @@ app.use(cors());
   }
 })();
 
-// Routes
-app.get('/', (req, res) => {
-  res.send("API Working");
-});
+const PORT = process.env.PORT || 4000;
 
-app.listen(4000, () => {
-  console.log("Server Running on port 4000");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
