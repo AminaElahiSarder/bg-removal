@@ -5,16 +5,26 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 4000;
 const app = express();
 
+// Middleware
+app.use(express.json());
+app.use(cors());
 
-  await connectDB();
+// Connect to the database
+(async () => {
+  try {
+    await connectDB();
+    console.log("Database Connected");
+  } catch (error) {
+    console.error("Database Connection Error:", error);
+  }
+})();
 
-  app.use(express.json());
-  app.use(cors());
+// Routes
+app.get('/', (req, res) => {
+  res.send("API Working");
+});
 
-  app.get('/', (req, res) => res.send("API Working"));
-
-  app.listen(PORT, () => console.log("Server Running on port " + PORT));
-
+// Export the app for Vercel deployment
+export default app;
