@@ -1,11 +1,11 @@
-import express from 'express';
-import cors from 'cors';
-import connectDB from './configs/mongodb.js';
-import dotenv from 'dotenv';
+const express = require('express');
+const cors = require('cors');
+const connectDB = require('./configs/mongodb.js');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
-const app = express();
+const app = express(); // Initialize the app correctly
 
 // Middleware
 app.use(express.json());
@@ -27,4 +27,4 @@ app.get('/', (req, res) => {
 });
 
 // Export the app for Vercel deployment
-export default app;
+module.exports = app;
