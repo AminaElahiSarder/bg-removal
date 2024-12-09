@@ -1,11 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./configs/mongodb.js');
-const dotenv = require('dotenv');
+import express from 'express';
+import cors from 'cors';
+import connectDB from './configs/mongodb.js';  // Keep .js extension for ES Modules
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-const app = express(); // Initialize the app correctly
+const app = express();
 
 // Middleware
 app.use(express.json());
@@ -26,11 +26,6 @@ app.get('/', (req, res) => {
   res.send("API Working");
 });
 
-// Start the server locally
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
-  console.log("Server Running on port " + PORT);
+app.listen(4000, () => {
+  console.log("Server Running on port 4000");
 });
-
-// Export the app for Vercel deployment
-module.exports = app;
