@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import connectDB from './configs/mongodb.js'; // Adjust path if needed
+import connectDB from './configs/mongodb.js'; 
+const PORT = process.env.PORT || 4000;
 
 dotenv.config();
 
@@ -24,8 +25,10 @@ app.get('/', (req, res) => {
   }
 })();
 
-const PORT = process.env.PORT || 4000;
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+export default app
