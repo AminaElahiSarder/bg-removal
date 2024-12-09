@@ -26,5 +26,11 @@ app.get('/', (req, res) => {
   res.send("API Working");
 });
 
+// Start the server locally
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log("Server Running on port " + PORT);
+});
+
 // Export the app for Vercel deployment
 module.exports = app;
